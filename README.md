@@ -1,10 +1,10 @@
-# telegram-chatgpt-bot
+# telegram-chatgpt-bot (CROW EDITION)
 
-A self-hostable Telegram bot that lets you speak with ChatGPT through text and voice memos.
+A self-hostable Telegram bot that lets you speak with ChatGPT through text and voice memos, all while impersonating a crow. 
 
 **️⚠ Hotfix** Due to popularity, the demo bot rate-limits unauthorized users after 10 messages per reboot.
 
-**Demo:** <a href="https://t.me/god_in_a_bot">@god_in_a_bot</a>
+**Demo:** <a href="https://t.me/crowbro_bot">@crowbro_bot</a>
 
 ## Table of contents
 
