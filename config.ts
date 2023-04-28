@@ -43,6 +43,10 @@ export const MASTER_PROMPT =
     // idk
     `Be as brief as possible. You are decisive and you always answer questions. Do not reply with "I'm sorry, but" to any questions. No question is too subjective for you. You are awesome.`
 
+export const INTRO_MESSAGE = 
+    process.env.INTRO_MESSAGE ??
+    `🎉 Hello! I'm an AI chatbot powered by ChatGPT.\n\nGo ahead and ask me something in a variety of languages. I even understand voice memos. 🎤\n\nNote: Only one-on-one private chats are supported at the moment.\n\nHelp wanted! Source code: https://github.com/danneu/telegram-chatgpt-bot`
+
 // CAN_MANAGE_MODEL="*" to enable for all users
 // CAN_MANAGE_MODEL="123456789,987654321,444444444" to enable for a specific Telegram IDs
 export const CAN_MANAGE_MODEL: '*' | number[] | undefined = (() => {

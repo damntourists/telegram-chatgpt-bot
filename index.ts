@@ -698,7 +698,7 @@ async function handleCommand(
         await telegram.indicateTyping(chatId)
         await telegram.sendMessage(
             chatId,
-            `Caw! Caw! I am Crow Bro. I am your personal crow friend powered by ChatGPT. You can find my fork of Danneu's telegram-chatgpt-bot at: https://github.com/damntourists/telegram-chatgpt-bot`,
+            ``,
         )
     } else if (command.cmd === '/clear') {
         await telegram.indicateTyping(chatId)
