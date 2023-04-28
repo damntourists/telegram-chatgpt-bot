@@ -698,7 +698,7 @@ async function handleCommand(
         await telegram.indicateTyping(chatId)
         await telegram.sendMessage(
             chatId,
-            ``,
+            config.INTRO_MESSAGE,
         )
     } else if (command.cmd === '/clear') {
         await telegram.indicateTyping(chatId)
