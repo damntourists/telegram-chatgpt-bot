@@ -163,6 +163,7 @@ const VOICE_MENU: Record<string, any> = {
         US: {
             Jenny: 'en-US-JennyNeural',
             Brandon: 'en-US-BrandonNeural',
+            Tony: 'en-US-TonyNeural'
         },
         UK: {
             Abbi: 'en-GB-AbbiNeural',
