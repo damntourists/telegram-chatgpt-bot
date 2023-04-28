@@ -77,11 +77,11 @@ async function initializeBot(): Promise<{
         //     command: 'prompt',
         //     description: 'set a master prompt',
         // },
-        { command: 'promptclear', description: 'clear master prompt' },
-        {
-            command: 'model',
-            description: 'switch to another model',
-        },
+        // { command: 'promptclear', description: 'clear master prompt' },
+        // {
+            // command: 'model',
+            // description: 'switch to another model',
+        // },
     ]
 
     await telegram.setMyCommands(commands)
@@ -422,18 +422,18 @@ async function processUserMessage(
     // Crude demo bot rate limit.
     // Only rate-limit guests.
     // HACK: Overloading canManageModel as an authz check.
-    if (!canManageModel(user.id)) {
-        const promptLimit = 10
-        promptCounts.set(user.id, (promptCounts.get(user.id) ?? 0) + 1)
-        if ((promptCounts.get(user.id) ?? 0) >= promptLimit) {
-            await telegram.sendMessage(
-                chat.id,
-                '❌ You have reached the maximum number of prompts on the demo bot.\n\nIf you like this bot, you can host your own: https://github.com/danneu/telegram-chatgpt-bot',
-                message.message_id,
-            )
-            return
-        }
-    }
+    // if (!canManageModel(user.id)) {
+    //     const promptLimit = 10
+    //     promptCounts.set(user.id, (promptCounts.get(user.id) ?? 0) + 1)
+    //     if ((promptCounts.get(user.id) ?? 0) >= promptLimit) {
+    //         await telegram.sendMessage(
+    //             chat.id,
+    //             '❌ You have reached the maximum number of prompts on the demo bot.\n\nIf you like this bot, you can host your own: https://github.com/danneu/telegram-chatgpt-bot',
+    //             message.message_id,
+    //         )
+    //         return
+    //     }
+    // }
 
     // TODO: This does happen, so figure out when this case happens and handle it.
     // I've seen it happen in group chats, maybe when adding the bot or something.
@@ -697,34 +697,34 @@ async function handleCommand(
         await telegram.indicateTyping(chatId)
         await telegram.sendMessage(
             chatId,
-            `🎉 Hello! I'm an AI chatbot powered by ChatGPT.\n\nGo ahead and ask me something in a variety of languages. I even understand voice memos. 🎤\n\nNote: Only one-on-one private chats are supported at the moment.\n\nHelp wanted! Source code: https://github.com/danneu/telegram-chatgpt-bot`,
+            `Caw! Caw! I am Crow Bro. I am your personal crow friend powered by ChatGPT. You can find my fork of Danneu's telegram-chatgpt-bot at: https://github.com/damntourists/telegram-chatgpt-bot`,
         )
     } else if (command.cmd === '/clear') {
         await telegram.indicateTyping(chatId)
         await db.clearPrompts(chatId)
         await telegram.sendMessage(chatId, '✅ Context cleared.', messageId)
-    } else if (command.cmd === '/promptclear') {
-        await db.setMasterPrompt(chatId, null)
-        await telegram.sendMessage(
-            chatId,
-            '✅ Custom system prompt cleared.',
-            messageId,
-        )
-    } else if (command.cmd === '/prompt') {
-        if (command.text.length === 0) {
-            await telegram.sendMessage(
-                chatId,
-                'Usage: <code>/prompt This is the new master prompt</code>',
-                messageId,
-            )
-        } else {
-            await db.setMasterPrompt(chatId, command.text)
-            await telegram.sendMessage(
-                chatId,
-                '✅ Master prompt updated.\n\nTo see changes: /clear context',
-                messageId,
-            )
-        }
+    // } else if (command.cmd === '/promptclear') {
+    //     await db.setMasterPrompt(chatId, null)
+    //     await telegram.sendMessage(
+    //         chatId,
+    //         '✅ Custom system prompt cleared.',
+    //         messageId,
+    //     )
+    // } else if (command.cmd === '/prompt') {
+    //     if (command.text.length === 0) {
+    //         await telegram.sendMessage(
+    //             chatId,
+    //             'Usage: <code>/prompt This is the new master prompt</code>',
+    //             messageId,
+    //         )
+    //     } else {
+    //         await db.setMasterPrompt(chatId, command.text)
+    //         await telegram.sendMessage(
+    //             chatId,
+    //             '✅ Master prompt updated.\n\nTo see changes: /clear context',
+    //             messageId,
+    //         )
+    //     }
     } else if (command.cmd === '/info') {
         await telegram.sendMessage(
             chatId,
@@ -735,7 +735,6 @@ Bot info:
 - Voice: ${prettyVoice(chat.voice ?? voz.DEFAULT_VOICE) ?? '--'} 
 - Voice responses: ${chat.send_voice ? '🔊 On' : '🔇 Off'}
 - Temperature: ${chat.temperature.toFixed(1)}
-- Master prompt: ${chat.master_prompt ?? '(Bot default)'}
         `.trim(),
             messageId,
         )

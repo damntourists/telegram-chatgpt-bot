@@ -32,6 +32,7 @@ const DEFAULT_VOICES: Record<string, string[]> = {
     en: [
         'en-US-JaneNeural', // * More fun than Jenny
         'en-US-BrandonNeural',
+        'en-US-TonyNeural'
     ],
     // Japanese
     ja: ['ja-JP-AoiNeural', 'ja-JP-DaichiNeural'],
@@ -39,7 +40,7 @@ const DEFAULT_VOICES: Record<string, string[]> = {
     ko: ['ko-KR-JiMinNeural', 'ko-KR-BongJinNeural'],
 }
 
-export const DEFAULT_VOICE = DEFAULT_VOICES.en[0]
+export const DEFAULT_VOICE = DEFAULT_VOICES.en[-1]
 
 export function voiceFromLanguageCode(code: string): string | undefined {
     const match = DEFAULT_VOICES[code.toLowerCase()]
