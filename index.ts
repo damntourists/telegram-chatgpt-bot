@@ -1196,9 +1196,14 @@ async function streamTokensToTelegram(
         for await (const chunk of tokenIterator) {
             buf += chunk
             if (typeof prevId !== 'number') {
-                prevId = await telegram
+                // prevId = await telegram
+                //     .sendMessage(chatId, prefix + cursor, initMessageId)
+                //     .then((msg) => msg.message_id)
+
+                const body = await telegram
                     .sendMessage(chatId, prefix + cursor, initMessageId)
-                    .then((msg) => msg.message_id)
+                console.log('sent telegram message.response body:', body)
+                prevId = body.message_id
 
                 // Start the edit loop after we have our first message so that
                 // at least 1000ms of tokens have accumulated.
